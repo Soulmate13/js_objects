@@ -6,9 +6,23 @@ let car = {
 
 };
 
+let distance, hours;
+
 let ShowInfo = function (_car) {
     alert(`manufacturer: ${_car.manufacturer}\nmodel: ${_car.model}\nyear: ${_car.year}\naverage speed: ${_car.averageSpeed}`)
-}
+};
+
+// let TripPlanner = function (_car) {
+//     distance = prompt("What is the total distance of your trip. in km");
+//     hours = distance / _car.averageSpeed;
+
+//     if ((hours > 4) && (hours % 4)) {
+//         hours = hours + (hours / 4);
+//     }
+
+// alert(`You will cover ${distance} km in ${hours} hours with the average speed of ${_car.averageSpeed}`);
+
+// }
 
 let numeratorOne, denominatorOne, numeratorTwo, denominatorTwo, fractionOne, fractionTwo, fractionThree;
 
@@ -65,10 +79,10 @@ let AddFractions = function (_fractionOne, _fractionTwo) {
             fractionThree.numerator = 1;
         }
 
-        else if (fractionThree.numerator % fractionThree.denominator) {
-            fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-            fractionThree.numerator = 1;
-        }
+        // else if (fractionThree.numerator % fractionThree.denominator) {
+        //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
+        //     fractionThree.numerator = 1;
+        // }
 
         alert(`${fractionOne.numerator}/${fractionOne.denominator} + ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
@@ -100,10 +114,10 @@ let MultiplyFractions = function (_fractionOne, _fractionTwo) {
         fractionThree.numerator = 1;
     }
 
-    else if (fractionThree.numerator % fractionThree.denominator) {
-        fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-        fractionThree.numerator = 1;
-    }
+    // else if (fractionThree.numerator % fractionThree.denominator) {
+    //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
+    //     fractionThree.numerator = 1;
+    // }
 
     alert(`${fractionOne.numerator}/${fractionOne.denominator} * ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
@@ -118,10 +132,10 @@ let DivideFractions = function (_fractionOne, _fractionTwo) {
         fractionThree.numerator = 1;
     }
 
-    else if (fractionThree.numerator % fractionThree.denominator) {
-        fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-        fractionThree.numerator = 1;
-    }
+    // else if (fractionThree.numerator % fractionThree.denominator) {
+    //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
+    //     fractionThree.numerator = 1;
+    // }
 
     alert(`${fractionOne.numerator}/${fractionOne.denominator} / ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
