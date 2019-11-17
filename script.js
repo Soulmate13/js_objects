@@ -12,17 +12,22 @@ let ShowInfo = function (_car) {
     alert(`manufacturer: ${_car.manufacturer}\nmodel: ${_car.model}\nyear: ${_car.year}\naverage speed: ${_car.averageSpeed}`)
 };
 
-// let TripPlanner = function (_car) {
-//     distance = prompt("What is the total distance of your trip. in km");
-//     hours = distance / _car.averageSpeed;
+let TripPlanner = function (_car) {
+    distance = prompt("What is the total distance of your trip. in km");
 
-//     if ((hours > 4) && (hours % 4)) {
-//         hours = hours + (hours / 4);
-//     }
+    hours = distance / _car.averageSpeed;
 
-// alert(`You will cover ${distance} km in ${hours} hours with the average speed of ${_car.averageSpeed}`);
+    if (hours <= 4) {
+        alert(`You will cover ${distance} km in ${hours} hours with the average speed of ${_car.averageSpeed}`);
+    }
 
-// }
+    else {
+        hours = hours + Math.trunc(hours / 4);
+        alert(`You will cover ${distance} km in ${hours} hours with the average speed of ${_car.averageSpeed}`);
+    }
+
+
+}
 
 let numeratorOne, denominatorOne, numeratorTwo, denominatorTwo, fractionOne, fractionTwo, fractionThree;
 
@@ -79,10 +84,10 @@ let AddFractions = function (_fractionOne, _fractionTwo) {
             fractionThree.numerator = 1;
         }
 
-        // else if (fractionThree.numerator % fractionThree.denominator) {
-        //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-        //     fractionThree.numerator = 1;
-        // }
+        else if ((fractionThree.numerator % fractionThree.denominator) == 0) {
+            fractionThree.numerator = fractionThree.numerator / fractionThree.denominator;
+            fractionThree.denominator = 1;
+        }
 
         alert(`${fractionOne.numerator}/${fractionOne.denominator} + ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
@@ -92,10 +97,10 @@ let AddFractions = function (_fractionOne, _fractionTwo) {
         fractionThree.denominator = fractionOne.denominator * fractionTwo.denominator;
         fractionThree.numerator = Number(fractionOne.numerator * fractionTwo.denominator) + Number(fractionTwo.numerator * fractionOne.denominator);
 
-        // if (fractionThree.numerator % fractionThree.denominator) {
-        //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-        //     fractionThree.numerator = 1;
-        // }
+        if ((fractionThree.numerator % fractionThree.denominator) == 0) {
+            fractionThree.numerator = fractionThree.numerator / fractionThree.denominator;
+            fractionThree.denominator = 1;
+        }
 
 
         alert(`${fractionOne.numerator}/${fractionOne.denominator} + ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
@@ -114,10 +119,10 @@ let MultiplyFractions = function (_fractionOne, _fractionTwo) {
         fractionThree.numerator = 1;
     }
 
-    // else if (fractionThree.numerator % fractionThree.denominator) {
-    //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-    //     fractionThree.numerator = 1;
-    // }
+    else if ((fractionThree.numerator % fractionThree.denominator) == 0) {
+        fractionThree.numerator = fractionThree.numerator / fractionThree.denominator;
+        fractionThree.denominator = 1;
+    }
 
     alert(`${fractionOne.numerator}/${fractionOne.denominator} * ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
@@ -132,10 +137,10 @@ let DivideFractions = function (_fractionOne, _fractionTwo) {
         fractionThree.numerator = 1;
     }
 
-    // else if (fractionThree.numerator % fractionThree.denominator) {
-    //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-    //     fractionThree.numerator = 1;
-    // }
+    else if ((fractionThree.numerator % fractionThree.denominator) == 0) {
+        fractionThree.numerator = fractionThree.numerator / fractionThree.denominator;
+        fractionThree.denominator = 1;
+    }
 
     alert(`${fractionOne.numerator}/${fractionOne.denominator} / ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
@@ -152,6 +157,11 @@ let SubstractFractions = function (_fractionOne, _fractionTwo) {
             fractionThree.numerator = 1;
         }
 
+        else if ((fractionThree.numerator % fractionThree.denominator) == 0) {
+            fractionThree.numerator = fractionThree.numerator / fractionThree.denominator;
+            fractionThree.denominator = 1;
+        }
+
         alert(`${fractionOne.numerator}/${fractionOne.denominator} - ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
     }
@@ -161,27 +171,12 @@ let SubstractFractions = function (_fractionOne, _fractionTwo) {
         fractionThree.denominator = fractionOne.denominator * fractionTwo.denominator;
         fractionThree.numerator = Number(fractionOne.numerator * fractionTwo.denominator) - Number(fractionTwo.numerator * fractionOne.denominator);
 
-        // if (fractionThree.numerator % fractionThree.denominator) {
-        //     fractionThree.denominator = fractionThree.denominator / fractionThree.numerator;
-        //     fractionThree.numerator = 1;
-        // }
+        if ((fractionThree.numerator % fractionThree.denominator) == 0) {
+            fractionThree.numerator = fractionThree.numerator / fractionThree.denominator;
+            fractionThree.denominator = 1;
+        }
         alert(`${fractionOne.numerator}/${fractionOne.denominator} - ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
 
     }
 
 }
-
-
-
-
-    // let fractionOne = {
-    //     numerator: prompt("Enter numerator of fraction one"),
-    //     denominator: prompt("Enter denominator of fraction two")
-    // };
-
-    // let fractionTwo = {
-    //     numerator: prompt("Enter numerator of fraction two"),
-    //     denominator: prompt("Enter denominator of fraction two")
-    // }
-
-
