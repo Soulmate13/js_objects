@@ -67,7 +67,6 @@ let GenerateFractions = function () {
 
     alert(`Your fractions are ${fractionOne.numerator}/${fractionOne.denominator} and ${fractionTwo.numerator}/${fractionTwo.denominator}. Use buttons to do some quick math.`);
 
-
 };
 
 let ReduceFraction = function (_numerator, _denominator) {
@@ -84,6 +83,7 @@ let ReduceFraction = function (_numerator, _denominator) {
     }
 
     else {
+
         while ((firstNumber % secondNumber) > 0) {
 
             remainder = (firstNumber % secondNumber);
@@ -163,9 +163,8 @@ let ReduceFractions = function (_fractionOne, _fractionTwo) {
 let AddFractions = function (_fractionOne, _fractionTwo) {
 
     if ((_fractionOne.denominator) == (_fractionTwo.denominator)) {
-        fractionThree.denominator = Number(_fractionOne.denominator)
-        fractionThree.numerator = Number(_fractionOne.numerator) + Number(_fractionTwo.numerator)
-
+        fractionThree.denominator = Number(_fractionOne.denominator);
+        fractionThree.numerator = Number(_fractionOne.numerator) + Number(_fractionTwo.numerator);
     }
 
     else {
@@ -206,8 +205,8 @@ let DivideFractions = function (_fractionOne, _fractionTwo) {
 let SubstractFractions = function (_fractionOne, _fractionTwo) {
 
     if ((_fractionOne.denominator) == (_fractionTwo.denominator)) {
-        fractionThree.denominator = _fractionOne.denominator
-        fractionThree.numerator = Number(_fractionOne.numerator) - Number(_fractionTwo.numerator)
+        fractionThree.denominator = _fractionOne.denominator;
+        fractionThree.numerator = Number(_fractionOne.numerator) - Number(_fractionTwo.numerator);
 
     }
 
