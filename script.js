@@ -76,14 +76,24 @@ let GenerateFractions = function () {
         denominator: ""
     };
 
-    alert(`Your fractions are ${fractionOne.numerator}/${fractionOne.denominator} and ${fractionTwo.numerator}/${fractionTwo.denominator}. Use buttons to do some quick math.`);
+    document.getElementById("desk").innerHTML = (`<pre> Your fractions are ${fractionOne.numerator}/${fractionOne.denominator} and ${fractionTwo.numerator}/${fractionTwo.denominator}. Use buttons to do some quick math.</pre>`);
+
 
 };
 
 let ReduceFraction = function (_numerator, _denominator) {
     firstNumber = Number(_numerator);
     secondNumber = Number(_denominator);
+
     let remainder;
+
+    if (firstNumber < 0) {
+        firstNumber = -firstNumber;
+    };
+
+    if (secondNumber < 0) {
+        secondNumber = -secondNumber;
+    };
 
     if ((firstNumber % secondNumber) == 0) {
         firstNumber = firstNumber / secondNumber;
@@ -119,6 +129,14 @@ let ReduceFractions = function (_fractionOne, _fractionTwo) {
     let secondNumber = Number(_fractionOne.denominator);
     let remainder;
 
+    if (firstNumber < 0) {
+        firstNumber = -firstNumber;
+    };
+
+    if (secondNumber < 0) {
+        secondNumber = -secondNumber;
+    };
+
     if ((firstNumber % secondNumber) == 0) {
         firstNumber = firstNumber / secondNumber;
         secondNumber = 1;
@@ -145,6 +163,14 @@ let ReduceFractions = function (_fractionOne, _fractionTwo) {
     secondNumber = Number(_fractionTwo.denominator);
     remainder = 0;
 
+    if (firstNumber < 0) {
+        firstNumber = -firstNumber;
+    };
+
+    if (secondNumber < 0) {
+        secondNumber = -secondNumber;
+    };
+
     if ((firstNumber % secondNumber) == 0) {
         firstNumber = firstNumber / secondNumber;
         secondNumber = 1;
@@ -166,8 +192,7 @@ let ReduceFractions = function (_fractionOne, _fractionTwo) {
         _fractionTwo.denominator = Number(_fractionTwo.denominator) / remainder;
 
     }
-
-    alert(`Your reduced fractions are ${fractionOne.numerator}/${fractionOne.denominator} and ${fractionTwo.numerator}/${fractionTwo.denominator}`);
+    document.getElementById("desk").innerHTML = (`<pre>Your reduced fractions are ${fractionOne.numerator}/${fractionOne.denominator} and ${fractionTwo.numerator}/${fractionTwo.denominator}</pre>`);
 
 };
 
@@ -185,7 +210,8 @@ let AddFractions = function (_fractionOne, _fractionTwo) {
 
     ReduceFraction(fractionThree.numerator, fractionThree.denominator);
 
-    alert(`${fractionOne.numerator}/${fractionOne.denominator} + ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
+    document.getElementById("desk").innerHTML = (`<pre>${fractionOne.numerator}/${fractionOne.denominator} + ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}</pre>`);
+
 
 };
 
@@ -196,7 +222,7 @@ let MultiplyFractions = function (_fractionOne, _fractionTwo) {
 
     ReduceFraction(fractionThree.numerator, fractionThree.denominator);
 
-    alert(`${fractionOne.numerator}/${fractionOne.denominator} * ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
+    document.getElementById("desk").innerHTML = (`<pre>${fractionOne.numerator}/${fractionOne.denominator} * ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}</pre>`);
 
 };
 
@@ -209,7 +235,7 @@ let DivideFractions = function (_fractionOne, _fractionTwo) {
 
     ReduceFraction(fractionThree.numerator, fractionThree.denominator);
 
-    alert(`${fractionOne.numerator}/${fractionOne.denominator} / ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
+    document.getElementById("desk").innerHTML = (`<pre>${fractionOne.numerator}/${fractionOne.denominator} / ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}</pre>`);
 
 };
 
@@ -230,7 +256,8 @@ let SubstractFractions = function (_fractionOne, _fractionTwo) {
 
     ReduceFraction(fractionThree.numerator, fractionThree.denominator);
 
-    alert(`${fractionOne.numerator}/${fractionOne.denominator} - ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
+    document.getElementById("desk").innerHTML = (`<pre>${fractionOne.numerator}/${fractionOne.denominator} - ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}</pre>`);
+
 };
 
 // 3. Создать объект, описывающий время (часы, минуты, секунды), и следующие функции для работы с этим объектом: 

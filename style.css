@@ -7,7 +7,7 @@ button {
     height: 100px;
 }
 
-#root {
+.text {
     font-size : 20px;
     font-weight: 600;
 }
