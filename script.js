@@ -1,3 +1,7 @@
+// 1. Создать объект, описывающий автомобиль (производитель, модель, год выпуска, средняя скорость), и следующие функции для работы с этим объектом:
+// Функция для вывода на экран информации об автомобиле;
+// Функция для подсчета необходимого времени для преодоления переданного расстояния со средней скоростью. Учтите, что через каждые 4 часа дороги водителю необходимо делать перерыв на 1 час.
+
 let car = {
     manufacturer: "Tesla, Inc",
     model: "Tesla Model S",
@@ -28,6 +32,13 @@ let TripPlanner = function (_car) {
 
 
 }
+
+// 2. Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, и следующие функции для работы с этим объектом: 
+// Функция сложения 2-х объектов-дробей;
+// Функция вычитания 2-х объектов-дробей;
+// Функция умножения 2-х объектов-дробей;
+// Функция деления 2-х объектов-дробей;
+// Функция сокращения объекта-дроби.
 
 let numeratorOne, denominatorOne, numeratorTwo, denominatorTwo, fractionOne, fractionTwo, fractionThree;
 
@@ -220,4 +231,130 @@ let SubstractFractions = function (_fractionOne, _fractionTwo) {
     ReduceFraction(fractionThree.numerator, fractionThree.denominator);
 
     alert(`${fractionOne.numerator}/${fractionOne.denominator} - ${fractionTwo.numerator}/${fractionTwo.denominator} = ${fractionThree.numerator}/${fractionThree.denominator}`);
+};
+
+// 3. Создать объект, описывающий время (часы, минуты, секунды), и следующие функции для работы с этим объектом: 
+// Функция вывода времени на экран;
+// Функция изменения времени на переданное количество секунд;
+// Функция изменения времени на переданное количество минут;
+// Функция изменения времени на переданное количество часов. 
+// Учтите, что в последних 3-х функциях, при изменении одной части времени, может измениться и другая. Например, если ко времени «20:30:45» добавить 30 секунд, то должно получиться «20:31:15», а не «20:30:75».
+
+let time = {
+    CurrentHours: "",
+    CurrentMinutes: "",
+    CurrentSeconds: ""
+};
+
+let GenerateTime = function () {
+
+    do {
+        time.CurrentHours = +prompt("Please enter valid hours. Between 0 and 23");
+    } while ((time.CurrentHours < 0) || (time.CurrentHours > 23));
+
+    do {
+        time.CurrentMinutes = +prompt("Please enter valid minutes. Between 0 and 59");
+    } while ((time.CurrentMinutes < 0) || (time.CurrentMinutes > 60));
+
+    do {
+        time.CurrentSeconds = +prompt("Please enter valid seconds. Between 0 and 59");
+    } while ((time.CurrentSeconds < 0) || (time.CurrentSeconds > 60));
+
+    document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`)
+
+
+};
+
+
+let ChangeSeconds = function (_secondsDiff) {
+
+    _secondsDiff = +prompt("How many seconds do you want to you want to add or subtract?");
+    let additionalMinutes;
+    time.CurrentSeconds += _secondsDiff;
+
+    if ((time.CurrentSeconds > 0) && (time.CurrentSeconds < 60)) {
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    }
+
+    else if ((time.CurrentSeconds > 0) && (time.CurrentSeconds >= 60)) {
+        for (let i = 1; time.CurrentSeconds >= 60; i++) {
+            time.CurrentSeconds -= 60;
+            additionalMinutes = i;
+        };
+        ChangeMinutesNoPrompt(additionalMinutes);
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    };
+
+
+};
+
+// else if ((time.CurrentSeconds < 0))
+
+let ChangeMinutes = function (_minutesDiff) {
+
+    _minutesDiff = +prompt("How many minutes do you want to you want to add or subtract?");
+    let additionalHours;
+    time.CurrentMinutes += _minutesDiff;
+
+    if ((time.CurrentMinutes > 0) && (time.CurrentMinutes < 60)) {
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    }
+
+    else if ((time.CurrentMinutes > 0) && (time.CurrentMinutes >= 60)) {
+        for (let j = 1; time.CurrentMinutes >= 60; j++) {
+            time.CurrentMinutes = time.CurrentMinutes - 60;
+            additionalHours = j;
+        };
+        ChangeHoursNoPrompt(additionalHours);
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+
+    };
+};
+
+let ChangeHours = function (_hoursDiff) {
+
+    _hoursDiff = +prompt("How many hours do you want to you want to add or subtract?");
+
+    time.CurrentHours += _hoursDiff;
+
+    if ((time.CurrentHours > 0) && (time.CurrentHours < 24)) {
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    }
+
+    else if ((time.CurrentHours > 0) && (time.CurrentHours >= 24)) {
+        for (let h = 0; time.CurrentHours >= 24; time.CurrentHours = time.CurrentHours - 24) {
+        };
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    };
+};
+
+let ChangeMinutesNoPrompt = function (_minutesDif) {
+
+    time.CurrentMinutes += _minutesDif;
+
+    if ((time.CurrentMinutes > 0) && (time.CurrentMinutes < 60)) {
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    }
+
+    else if ((time.CurrentMinutes > 0) && (time.CurrentMinutes >= 60)) {
+        for (let j = 0; time.CurrentMinutes >= 60; time.CurrentMinutes = time.CurrentMinutes - 60) {
+        };
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    };
+};
+
+let ChangeHoursNoPrompt = function (_hoursDif) {
+
+    time.CurrentHours += _hoursDif;
+
+    if ((time.CurrentHours > 0) && (time.CurrentHours < 24)) {
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    }
+
+    else if ((time.CurrentHours > 0) && (time.CurrentHours >= 24)) {
+        for (let h = 0; time.CurrentHours >= 24; h++) {
+            time.CurrentHours = time.CurrentHours - 24;
+        };
+        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    };
 };
