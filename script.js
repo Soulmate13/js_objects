@@ -7,10 +7,9 @@ let car = {
     model: "Tesla Model S",
     year: 2012,
     averageSpeed: 100
-
 };
 
-let distance, hours;
+let distance, hours, resthours;
 
 let ShowInfo = function (_car) {
     alert(`manufacturer: ${_car.manufacturer}\nmodel: ${_car.model}\nyear: ${_car.year}\naverage speed: ${_car.averageSpeed}`)
@@ -26,7 +25,8 @@ let TripPlanner = function (_car) {
     }
 
     else {
-        hours = hours + Math.trunc(hours / 4);
+        resthours = Math.trunc(distance / 400);
+        hours = hours + resthours;
         alert(`You will cover ${distance} km in ${hours} hours with the average speed of ${_car.averageSpeed}`);
     }
 
@@ -56,7 +56,6 @@ let GenerateFractions = function () {
 
     do {
         denominatorTwo = +prompt("Enter the denominator of the second fraction");
-
     }
 
     while (denominatorTwo == 0);
@@ -267,13 +266,17 @@ let SubstractFractions = function (_fractionOne, _fractionTwo) {
 // Функция изменения времени на переданное количество часов. 
 // Учтите, что в последних 3-х функциях, при изменении одной части времени, может измениться и другая. Например, если ко времени «20:30:45» добавить 30 секунд, то должно получиться «20:31:15», а не «20:30:75».
 
-let time = {
+let time = {  // time object
     CurrentHours: "",
     CurrentMinutes: "",
     CurrentSeconds: ""
 };
 
-let GenerateTime = function () {
+let OutputTime = function () { //function that outputs time
+    document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+};
+
+let GenerateTime = function () { // genereting valid time with prompt
 
     do {
         time.CurrentHours = +prompt("Please enter valid hours. Between 0 and 23");
@@ -287,101 +290,107 @@ let GenerateTime = function () {
         time.CurrentSeconds = +prompt("Please enter valid seconds. Between 0 and 59");
     } while ((time.CurrentSeconds < 0) || (time.CurrentSeconds > 60));
 
-    document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`)
-
-
+    OutputTime();
 };
 
+let ChangeSeconds = function () { // function that changes seconds
 
-let ChangeSeconds = function (_secondsDiff) {
-
-    _secondsDiff = +prompt("How many seconds do you want to you want to add or subtract?");
-    let additionalMinutes;
+    _secondsDiff = +prompt("How many seconds do you want to you want to add or subtract?"); // promting
+    let additionalMinutes; // new variable for additional hours in case seconds equal to 60 / -60 or more / less
     time.CurrentSeconds += _secondsDiff;
 
-    if ((time.CurrentSeconds > 0) && (time.CurrentSeconds < 60)) {
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    if ((time.CurrentSeconds > 0) && (time.CurrentSeconds < 60)) { // if seconds are within 0 < seconds 60 frame we just print time
+        OutputTime();
     }
 
-    else if ((time.CurrentSeconds > 0) && (time.CurrentSeconds >= 60)) {
-        for (let i = 1; time.CurrentSeconds >= 60; i++) {
+    else if ((time.CurrentSeconds > 0) && (time.CurrentSeconds >= 60)) { // if seconds are < 60 we need to add an additional minute
+        for (i = 1; time.CurrentSeconds >= 60; i++) { // looping to get the amount of additional minutes
             time.CurrentSeconds -= 60;
             additionalMinutes = i;
         };
-        ChangeMinutesNoPrompt(additionalMinutes);
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
-    };
+        ChangeMinutesNoPrompt(additionalMinutes); // we need to change the minutes before printing
+        OutputTime();
+    }
 
+    else if (time.CurrentSeconds < 0) { // if seconds are negative we need to count negative minutes
+        for (k = -1; time.CurrentSeconds < 0; k--) { // looping to get negative minutes
+            time.CurrentSeconds += 60;
+            additionalMinutes = k;
+        };
+        ChangeMinutesNoPrompt(additionalMinutes); // we need to subtract munutes before printing
+        OutputTime();
+    }
+
+    else if (time.CurrentSeconds == 0) {
+        OutputTime(); // if seconds are 0 we just print
+    }
 
 };
 
-// else if ((time.CurrentSeconds < 0))
-
-let ChangeMinutes = function (_minutesDiff) {
-
-    _minutesDiff = +prompt("How many minutes do you want to you want to add or subtract?");
-    let additionalHours;
-    time.CurrentMinutes += _minutesDiff;
+let ChangeMinutesNoPrompt = function (_minutesDif) {
+    let additionalHours; // additional hours variable in case the hour changes
+    time.CurrentMinutes += _minutesDif;
 
     if ((time.CurrentMinutes > 0) && (time.CurrentMinutes < 60)) {
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+        OutputTime(); // if minutes are within 0 < seconds 60 frame we just print time
     }
 
     else if ((time.CurrentMinutes > 0) && (time.CurrentMinutes >= 60)) {
-        for (let j = 1; time.CurrentMinutes >= 60; j++) {
-            time.CurrentMinutes = time.CurrentMinutes - 60;
+        for (let j = 1; time.CurrentMinutes >= 60; j++) { // if minutes are < 60 we need to add an additional hour
+            time.CurrentMinutes = time.CurrentMinutes - 60; // looping to get the amount of additional hours
             additionalHours = j;
         };
-        ChangeHoursNoPrompt(additionalHours);
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+        ChangeHoursNoPrompt(additionalHours); // we need to change hours before printing
+        OutputTime();
+    }
 
-    };
+    else if (time.CurrentMinutes == 0) {
+        OutputTime(); // if minutes are 0 we just print
+    }
+
+    else if (time.CurrentMinutes < 0) { // if minutes are negative we need to count negative hours
+        for (m = -1; time.CurrentMinutes < 0; m--) {
+            time.CurrentMinutes += 60;
+            additionalHours = m;
+        };
+        ChangeHoursNoPrompt(additionalHours); // we need to change hours before printing
+        OutputTime();
+    }
 };
 
-let ChangeHours = function (_hoursDiff) {
+let ChangeMinutes = function () {
 
-    _hoursDiff = +prompt("How many hours do you want to you want to add or subtract?");
+    _minutesDiff = +prompt("How many minutes do you want to you want to add or subtract?");
+    ChangeMinutesNoPrompt(_minutesDiff)
+};
+
+let ChangeHoursNoPrompt = function () {
 
     time.CurrentHours += _hoursDiff;
 
     if ((time.CurrentHours > 0) && (time.CurrentHours < 24)) {
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+        OutputTime(); // if hours are within 0 - 23 range we just print
     }
 
-    else if ((time.CurrentHours > 0) && (time.CurrentHours >= 24)) {
-        for (let h = 0; time.CurrentHours >= 24; time.CurrentHours = time.CurrentHours - 24) {
+    else if ((time.CurrentHours > 0) && (time.CurrentHours >= 24)) { // if hours are > 24 we need to loop until hours are less than 24
+        for (time.CurrentHours; time.CurrentHours >= 24; time.CurrentHours = time.CurrentHours - 24) {
         };
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
-    };
-};
-
-let ChangeMinutesNoPrompt = function (_minutesDif) {
-
-    time.CurrentMinutes += _minutesDif;
-
-    if ((time.CurrentMinutes > 0) && (time.CurrentMinutes < 60)) {
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+        OutputTime();
     }
 
-    else if ((time.CurrentMinutes > 0) && (time.CurrentMinutes >= 60)) {
-        for (let j = 0; time.CurrentMinutes >= 60; time.CurrentMinutes = time.CurrentMinutes - 60) {
-        };
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
-    };
-};
-
-let ChangeHoursNoPrompt = function (_hoursDif) {
-
-    time.CurrentHours += _hoursDif;
-
-    if ((time.CurrentHours > 0) && (time.CurrentHours < 24)) {
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
+    else if (time.CurrentHours == 0) { // if hours are 0 we print
+        OutputTime();
     }
 
-    else if ((time.CurrentHours > 0) && (time.CurrentHours >= 24)) {
-        for (let h = 0; time.CurrentHours >= 24; h++) {
-            time.CurrentHours = time.CurrentHours - 24;
+    else if (time.CurrentHours < 0) { // if hours are < 0 we need to loop until hours are 0 or more
+        for (time.CurrentHours; time.CurrentHours < 0; time.CurrentHours = time.CurrentHours + 24) {
         };
-        document.getElementById("root").innerHTML = (`<pre> Current time is ${time.CurrentHours}:${time.CurrentMinutes}:${time.CurrentSeconds} </pre>`);
-    };
+        OutputTime();
+    }
 };
+
+let ChangeHours = function () {
+    _hoursDiff = +prompt("How many hours do you want to you want to add or subtract?");
+    ChangeHoursNoPrompt(_hoursDiff)
+};
+
